@@ -3,8 +3,6 @@ package ru.parsentev.store;
 import ru.parsentev.models.User;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * TODO: comment
@@ -12,47 +10,53 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author parsentev
  * @since 18.04.2015
  */
-public class UserCache {
+public class UserCache implements Storage {
 
     private static final UserCache INSTANCE = new UserCache();
 
-    private final ConcurrentHashMap<Integer, User> users = new ConcurrentHashMap<>();
+    private final Storage storage = new MemoryStorage();
 
     public static UserCache getInstance() {
         return INSTANCE;
     }
 
+    @Override
     public Collection<User> values() {
-        return INSTANCE.users.values();
+        return INSTANCE.values();
     }
 
-    public void add(final User user) {
-        this.users.put(user.getId(), user);
+    @Override
+    public int add(final User user) {
+        return this.storage.add(user);
     }
 
+    @Override
     public void edit(final User user) {
-        this.users.replace(user.getId(), user);
+        this.storage.edit(user);
     }
 
+    @Override
     public void delete(final int id) {
-        this.users.remove(id);
+        this.storage.delete(id);
     }
 
+    @Override
     public User get(final int id) {
-        return this.users.get(id);
+        return this.storage.get(id);
     }
 
-    public User findByLogin(String login) {
-        for (Map.Entry<Integer, User> entry : users.entrySet()) {
-            if (entry.getValue().getLogin().equals(login)) {
-                return entry.getValue();
-            }
-        }
-        // TODO replace exception
-        return null;
+    @Override
+    public User findByLogin(final String login) {
+        return this.storage.findByLogin(login);
     }
 
+    @Override
     public int generateId() {
-        return 1;
+        return this.storage.generateId();
+    }
+
+    @Override
+    public void close() {
+        this.storage.close();
     }
 }

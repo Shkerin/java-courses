@@ -29,5 +29,6 @@ public class UserViewServlet extends HttpServlet {
     @Override
     public void destroy() {
         super.destroy();
+        USER_CACHE.close();
     }
 }
