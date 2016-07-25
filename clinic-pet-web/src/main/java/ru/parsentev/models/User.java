@@ -1,16 +1,19 @@
 package ru.parsentev.models;
 
+import java.util.List;
+
 /**
  * TODO: comment
  *
  * @author parsentev
  * @since 17.04.2015
  */
-public class User {
+public class User extends Base {
 
-    private int id;
     private String login;
     private String email;
+    private Role role = new Role();
+    private List<Message> messages;
 
     public User() {
         //empty
@@ -22,27 +25,35 @@ public class User {
         this.email = email;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getLogin() {
         return this.login;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setLogin(String login) {
         this.login = login;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

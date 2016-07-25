@@ -117,3 +117,6 @@ out
 gen
 # Created by .ignore support plugin (hsz.mobi)
 Would skip repository DreamsJob/
+
+# log
+*.log
