@@ -16,11 +16,11 @@ import static org.junit.Assert.assertNull;
  * @author parsentev
  * @since 01.05.2015
  */
-public class HibernateStorageTest {
+public class UserStorageTest {
 
     @Test
     public void testCreate() throws Exception {
-        final HibernateStorage storage = new HibernateStorage();
+        final UserStorage storage = new UserStorage();
 
         Role role = new Role();
         role.setId(2);
@@ -41,7 +41,7 @@ public class HibernateStorageTest {
 
     @Test
     public void testCreateUser() throws Exception {
-        final HibernateStorage storage = new HibernateStorage();
+        final UserStorage storage = new UserStorage();
 
         Role role = new Role();
         role.setId(1);
