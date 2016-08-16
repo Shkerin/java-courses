@@ -11,6 +11,7 @@ import java.util.Set;
 public class User extends Base {
 
     private String login;
+    private String password;
     private String email;
     private Role role = new Role();
     private Set<Message> messages;
@@ -31,6 +32,14 @@ public class User extends Base {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
